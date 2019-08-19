@@ -38,7 +38,7 @@ async (req, res) =>
     try {
     //see if the user exists
     // 1. grab user 
-    let user = User.findOne({email});
+    let user = await User.findOne({email});
         //if user exists send back error
     if(user){
         res.status('400').json({errors: [{msg: 'email already taken'}]})
@@ -69,7 +69,6 @@ async (req, res) =>
         user:{
             id: user.id
         }
-
     };
     jwt.sign(
         payload, 
@@ -77,13 +76,13 @@ async (req, res) =>
         {expiresIn: 360000}, 
         (err, token) =>{
             if (err) throw err; 
-            res.json({token});
+            res.json({ token });
         }
-    ); 
+    );
     //return jsonwebtoken
         //when user registers I want them to get logged in rightaway
         //in order to be logged in gotta have that token
-    // res.send('User Registered');
+
 
     } catch (err) {
         console.error(err.message);
@@ -91,7 +90,7 @@ async (req, res) =>
         res.status(500).send('server error');
     }
    
-    res.send('User route');
+
 }
 );
 
