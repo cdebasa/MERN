@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 const Alert = ({ alerts }) =>
   alerts !== null &&
@@ -11,14 +11,13 @@ const Alert = ({ alerts }) =>
     </div>
   ));
 
-
 Alert.propTypes = {
-    alerts: PropTypes.array.isRequired,
-}
+  alerts: PropTypes.array.isRequired
+};
 //map redux state to a prop to have access
 
 const mapStateToProps = state => ({
-    alerts: state.alert
+  alerts: state.alert
 });
 
 export default connect(mapStateToProps)(Alert);
